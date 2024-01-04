@@ -1,0 +1,11 @@
+.left-form{
+
+	-fx-background-color:linear-gradient(to bottom right,#ffffff,#2a6994);
+}
+
+.right-form{
+	-fx-background-color:#fff;
+}
+.r{
+	-fx-background-color:#ffff;
+}
