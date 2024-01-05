@@ -6,6 +6,36 @@
 .right-form{
 	-fx-background-color:#fff;
 }
-.r{
-	-fx-background-color:#ffff;
+.textfields{
+    -fx-background-color: transparent;
+    -fx-border-color:#6600ff;
+    -fx-border-width: 0px 0px 1px 0px;
+    
+}
+.textfields:focused{
+    -fx-border-width: 0px 0px 2px 0px;
+}
+
+.button{
+    -fx-background-color: linear-gradient(to bottom left,#5f2bba,#2a7abc);
+    -fx-background-radius: 19px 5px 19px 5px ;
+    -fx-text-fill:#000000;
+}
+
+.button:hover{
+    -fx-background-color:#339900
+}
+
+.exit{
+    -fx-background-color:#9999ff;
+    -fx-background-radius: 50px;
+    -fx-cursor: hand;
+}
+.exit:hover{
+    -fx-background-color:#ff0066 ;
+    
+}
+.login-form{
+    -fx-border-color: #000000;
+    -fx-border-width: 1px;
 }
