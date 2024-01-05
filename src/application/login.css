@@ -32,7 +32,7 @@
     -fx-cursor: hand;
 }
 .exit:hover{
-    -fx-background-color:#ff0066 ;
+    -fx-background-color:red;
     
 }
 .login-form{
