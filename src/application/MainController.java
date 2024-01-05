@@ -62,7 +62,7 @@ public class MainController {
 	               
 	               login.getScene().getWindow().hide();
 	               
-	               Parent root = FXMLLoader.load(getClass().getResource("FXML.fxml"));
+	               Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
 	               
 	               Stage stage = new Stage();
 	               Scene scene = new Scene(root);
