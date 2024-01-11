@@ -26,3 +26,16 @@
 	-fx-background-color:#2ca1a1;
 	-fx-font-size:16px;
 }
+.white-bg{
+-fx-background-color:#fff;
+-fx-background-radius:10px;
+}
+
+.shadow{
+-fx-effect:dropshadow(three-pass-box,rgba(0,0,0,0.4),4,0,0,0);
+}
+
+.card{
+	-fx-background-color:linear-gradient(to bottom right,#39555e,#2799bc);
+	-fx-background-radius:5px;
+	}
