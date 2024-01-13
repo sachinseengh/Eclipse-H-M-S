@@ -39,3 +39,22 @@
 	-fx-background-color:linear-gradient(to bottom right,#39555e,#2799bc);
 	-fx-background-radius:5px;
 	}
+	
+.close{
+	-fx-background-color:transparent;
+	-fx-cursor:hand;
+	
+}	
+.close:hover{
+	-fx-background-color:#d12121;
+}
+
+.minimize{
+	-fx-background-color:transparent;
+	-fx-cursor:hand
+}
+.minimize:hover{
+	-fx-background-color:#6e7f84;
+}
+
+
