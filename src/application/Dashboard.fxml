@@ -195,8 +195,8 @@
                                                 <Font name="System Bold" size="12.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox fx:id="availablerooms_roomtype" layoutX="103.0" layoutY="84.0" onAction="#comboRoomType" prefHeight="26.0" prefWidth="143.0" styleClass="combo-box" stylesheets="@DashboardDesign.css" />
-                                          <ComboBox fx:id="availablerooms_roomstatus" layoutX="103.0" layoutY="125.0" onAction="#comboRoomStatus" prefHeight="26.0" prefWidth="143.0" styleClass="combo-box" stylesheets="@DashboardDesign.css" />
+                                          <ComboBox fx:id="availablerooms_roomtype" layoutX="103.0" layoutY="84.0" prefHeight="26.0" prefWidth="143.0" styleClass="combo-box" stylesheets="@DashboardDesign.css" />
+                                          <ComboBox fx:id="availablerooms_roomstatus" layoutX="103.0" layoutY="125.0" prefHeight="26.0" prefWidth="143.0" styleClass="combo-box" stylesheets="@DashboardDesign.css" />
                                           <TextField fx:id="availablerooms_price" layoutX="103.0" layoutY="167.0" prefHeight="26.0" prefWidth="143.0" styleClass="textfield-avl" stylesheets="@DashboardDesign.css" />
                                           <Label layoutX="23.0" layoutY="88.0" text="Room Type :">
                                              <font>
@@ -206,7 +206,7 @@
                                           <Label layoutX="22.0" layoutY="129.0" text="Room Status" />
                                           <Label layoutX="40.0" layoutY="171.0" text="Price :" />
                                           <Button fx:id="availablerooms_addbtn" layoutX="16.0" layoutY="287.0" mnemonicParsing="false" onAction="#roomAdd" prefHeight="34.0" prefWidth="102.0" styleClass="add-btn" stylesheets="@DashboardDesign.css" text="Add" />
-                                          <Button fx:id="availablerooms_update" layoutX="139.0" layoutY="287.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="update-btn" stylesheets="@DashboardDesign.css" text="Update" />
+                                          <Button fx:id="availablerooms_update" layoutX="139.0" layoutY="287.0" mnemonicParsing="false" onAction="#update" prefHeight="34.0" prefWidth="102.0" styleClass="update-btn" stylesheets="@DashboardDesign.css" text="Update" />
                                           <Button fx:id="availablerooms_clearbtn" layoutX="14.0" layoutY="348.0" mnemonicParsing="false" onAction="#clearData" prefHeight="34.0" prefWidth="102.0" styleClass="clear-btn" stylesheets="@DashboardDesign.css" text="Clear" />
                                           <Button fx:id="availableroom_deletebtn" layoutX="137.0" layoutY="348.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="delete-btn" stylesheets="@DashboardDesign.css" text="Delete" />
                                           <Button fx:id="availablerooms_checkin" layoutX="23.0" layoutY="461.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="216.0" styleClass="check-in-btn" stylesheets="@DashboardDesign.css" text="Check-in" />
@@ -218,7 +218,7 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                        <children>
-                                          <TableView fx:id="availablerooms_tableview" layoutX="14.0" layoutY="58.0" prefHeight="467.0" prefWidth="590.0">
+                                          <TableView fx:id="availablerooms_tableview" layoutX="14.0" layoutY="58.0" onMouseClicked="#AvailableselectData" prefHeight="467.0" prefWidth="590.0">
                                             <columns>
                                               <TableColumn fx:id="availablerooms_tablecol_roomno" prefWidth="64.0000319480896" text="Room No." />
                                               <TableColumn fx:id="availablerooms_tablecol_roomtype" prefWidth="210.39995574951172" text="Room Type" />

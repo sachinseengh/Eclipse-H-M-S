@@ -162,6 +162,10 @@ public class DashboardController implements Initializable{
     }
 	
 	
+    
+    
+    
+    //Adding room
     public void roomAdd() {
     	
     	if(availablerooms_roomno.getText().isEmpty()||availablerooms_roomtype.getSelectionModel().isEmpty()
@@ -201,6 +205,7 @@ public class DashboardController implements Initializable{
     	}
     }
     
+    //clear Data
     public void clearData() {
     	 
     	availablerooms_roomno.setText("");
@@ -242,7 +247,6 @@ public class DashboardController implements Initializable{
     }
     
 ////    To show data
-    
     public void showData(){
     	 ObservableList<Data> showList = dataList();
         
@@ -258,10 +262,8 @@ public class DashboardController implements Initializable{
     }
     
     
-    
     //TO SELECT TABLE DATA
-    
-    public void selectData() {
+    public void AvailableselectData() {
     	Data data = availablerooms_tableview.getSelectionModel().getSelectedItem();
     	
     	int num = availablerooms_tableview.getSelectionModel().getSelectedIndex();
@@ -271,6 +273,7 @@ public class DashboardController implements Initializable{
     	
     	availablerooms_roomno.setText(String.valueOf(data.getRoomNumber()));
     	availablerooms_roomtype.setValue(data.getRoomType());
+    	 	
     	availablerooms_roomstatus.setValue(data.getStatus());
     	availablerooms_price.setText(String.valueOf(data.getPrice()));
     
@@ -346,7 +349,58 @@ public class DashboardController implements Initializable{
     		e.printStackTrace();
     	}}
     }
-	@Override
+	
+    //update functionality
+    
+    public void update() {
+    	if(availablerooms_roomno.getText().isEmpty()||availablerooms_roomtype.getSelectionModel().isEmpty()
+    			|| availablerooms_roomstatus.getSelectionModel().
+    			isEmpty()|| availablerooms_price.getText().isEmpty()) {
+    		
+    		
+    		Alert alert = new Alert(AlertType.ERROR);
+    		alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Fill all the Blank fields");
+            alert.showAndWait();
+    	}else {
+    		Conn conn= new Conn();
+    		
+    		
+    		String sql="update room set roomtype='"+(String)availablerooms_roomtype.getSelectionModel().getSelectedItem()+"',"
+    				+ "status='"+(String)availablerooms_roomstatus.getSelectionModel().getSelectedItem()+"'"
+    						+ ",price='"+availablerooms_price.getText()+"' where roomNumber='"+availablerooms_roomno.getText()+"'";
+    				
+
+    				
+    		try {
+    			
+    			conn.s.executeUpdate(sql);
+    			
+    			
+    			Alert alert = new Alert(AlertType.INFORMATION);
+        		alert.setTitle("SuccessFul");
+                alert.setHeaderText(null);
+                alert.setContentText("Room Updated Successfully");
+                alert.show();
+                
+                
+                
+                
+                
+                clearData();
+                showData();
+    		}catch(Exception e) {
+    			e.printStackTrace();
+    		}
+    	}
+    	
+    	
+    }
+    
+   
+    
+    @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		comboRoomType();
