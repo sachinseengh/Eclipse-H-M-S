@@ -398,6 +398,51 @@ public class DashboardController implements Initializable{
     	
     }
     
+    public void delete() {
+    	if(availablerooms_roomno.getText().isEmpty()) {
+    		
+    		
+    		Alert alert = new Alert(AlertType.ERROR);
+    		alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Enter the Room Number");
+            alert.showAndWait();
+            
+    	}else {
+    		
+
+			Alert alert1 = new Alert(AlertType.CONFIRMATION);
+    		alert1.setTitle("SuccessFul");
+            alert1.setHeaderText(null);
+            alert1.setContentText("Are you sure to delete the room ?");
+            
+            Optional<ButtonType> option = alert1.showAndWait();
+        	
+        	if(option.get().equals(ButtonType.OK)) {
+           
+    		Conn conn= new Conn();
+    		
+    		
+    		String sql="DELETE FROM ROOM where roomNumber='"+availablerooms_roomno.getText()+"'";
+    				
+
+    				
+    		try {
+    			
+    			conn.s.executeUpdate(sql);
+    			
+    			Alert alert2 = new Alert(AlertType.INFORMATION);
+        		alert2.setTitle("Room Deleted");
+                alert2.setHeaderText(null);
+                alert2.setContentText("Room Delted Successfully");
+                alert2.show();
+                clearData();
+                showData();
+    		}catch(Exception e) {
+    			e.printStackTrace();
+    		}
+    	}}
+    }
    
     
     @Override
