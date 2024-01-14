@@ -10,7 +10,7 @@ public class Conn {
        
        c= DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagementsystem","root","");
        s=c.createStatement();
-//       System.out.println(s);
+
 
     }catch(Exception e){
         System.out.println(e);

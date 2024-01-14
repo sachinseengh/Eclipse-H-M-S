@@ -7,6 +7,8 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.AreaChart;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -47,10 +49,10 @@ public class DashboardController implements Initializable{
     private TextField availablerooms_roomno;
 
     @FXML
-    private ComboBox<?> availablerooms_roomstatus;
+    private ComboBox<String> availablerooms_roomstatus;
 
     @FXML
-    private ComboBox<?> availablerooms_roomtype;
+    private ComboBox<String> availablerooms_roomtype;
 
     @FXML
     private TextField availablerooms_searchtxtfield;
@@ -134,15 +136,56 @@ public class DashboardController implements Initializable{
     private Button minimize_btn;
 
 	
+    private String[] comboroomtype={"Single","Double","Triple"};
+    private String[] comboroomstatus= {"Available","UnAvailable"};
+    
+    public void comboRoomType() {
+    	availablerooms_roomtype.getItems().addAll(comboroomtype);
+    }
+    public void comboRoomStatus() {
+    	availablerooms_roomstatus.getItems().addAll(comboroomstatus);
+    }
 	
 	
-	
-	
+    public void roomAdd() {
+    	
+    	if(availablerooms_roomno.getText().isEmpty()||availablerooms_roomtype.getSelectionModel().isEmpty()
+    			|| availablerooms_roomstatus.getSelectionModel().
+    			isEmpty()|| availablerooms_price.getText().isEmpty()) {
+    		
+    		
+    		Alert alert = new Alert(AlertType.ERROR);
+    		alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Fill all the Blank fields");
+            alert.showAndWait();
+    	}else {
+    		Conn conn= new Conn();
+    		String sql="insert into room(roomno,roomtype,roomstatus,price)values('"+availablerooms_roomno.
+    				getText()+"','"+(String)availablerooms_roomtype.getSelectionModel().getSelectedItem()+"','"+(String)availablerooms_roomstatus
+    				.getSelectionModel().getSelectedItem()+"','"+availablerooms_price.getText()+"')";
+    				
+    		try {
+    			
+    			conn.s.executeUpdate(sql);
+    			Alert alert = new Alert(AlertType.INFORMATION);
+        		alert.setTitle("SuccessFul");
+                alert.setHeaderText(null);
+                alert.setContentText("Room Added Successfully");
+                alert.show();
+    		}catch(Exception e) {
+    			e.printStackTrace();
+    		}
+    	}
+    }
+    
+    
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		
+		comboRoomType();
+		comboRoomStatus();
 	}
 	
 }

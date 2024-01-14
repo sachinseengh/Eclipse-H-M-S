@@ -18,7 +18,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DashboardController">
    <children>
       <StackPane layoutX="201.0" layoutY="150.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -181,7 +181,7 @@
                                     </AnchorPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="availablerooms_form" layoutX="61.0" layoutY="120.0" prefHeight="544.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="availablerooms_form" layoutX="61.0" layoutY="120.0" prefHeight="544.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane layoutX="10.0" layoutY="8.0" prefHeight="526.0" prefWidth="269.0" stylesheets="@DashboardDesign.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="8.0">
                                        <styleClass>
@@ -195,8 +195,8 @@
                                                 <Font name="System Bold" size="12.0" />
                                              </font>
                                           </Label>
-                                          <ComboBox fx:id="availablerooms_roomtype" layoutX="103.0" layoutY="84.0" prefHeight="26.0" prefWidth="143.0" styleClass="combo-box" stylesheets="@DashboardDesign.css" />
-                                          <ComboBox fx:id="availablerooms_roomstatus" layoutX="103.0" layoutY="125.0" prefHeight="26.0" prefWidth="143.0" styleClass="combo-box" stylesheets="@DashboardDesign.css" />
+                                          <ComboBox fx:id="availablerooms_roomtype" layoutX="103.0" layoutY="84.0" onAction="#comboRoomType" prefHeight="26.0" prefWidth="143.0" styleClass="combo-box" stylesheets="@DashboardDesign.css" />
+                                          <ComboBox fx:id="availablerooms_roomstatus" layoutX="103.0" layoutY="125.0" onAction="#comboRoomStatus" prefHeight="26.0" prefWidth="143.0" styleClass="combo-box" stylesheets="@DashboardDesign.css" />
                                           <TextField fx:id="availablerooms_price" layoutX="103.0" layoutY="167.0" prefHeight="26.0" prefWidth="143.0" styleClass="textfield-avl" stylesheets="@DashboardDesign.css" />
                                           <Label layoutX="23.0" layoutY="88.0" text="Room Type :">
                                              <font>
@@ -205,7 +205,7 @@
                                           </Label>
                                           <Label layoutX="22.0" layoutY="129.0" text="Room Status" />
                                           <Label layoutX="40.0" layoutY="171.0" text="Price :" />
-                                          <Button fx:id="availablerooms_addbtn" layoutX="16.0" layoutY="287.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="add-btn" stylesheets="@DashboardDesign.css" text="Add" />
+                                          <Button fx:id="availablerooms_addbtn" layoutX="16.0" layoutY="287.0" mnemonicParsing="false" onAction="#roomAdd" prefHeight="34.0" prefWidth="102.0" styleClass="add-btn" stylesheets="@DashboardDesign.css" text="Add" />
                                           <Button fx:id="availablerooms_update" layoutX="139.0" layoutY="287.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="update-btn" stylesheets="@DashboardDesign.css" text="Update" />
                                           <Button fx:id="availablerooms_clearbtn" layoutX="14.0" layoutY="348.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="clear-btn" stylesheets="@DashboardDesign.css" text="Clear" />
                                           <Button fx:id="availableroom_deletebtn" layoutX="137.0" layoutY="348.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="delete-btn" stylesheets="@DashboardDesign.css" text="Delete" />
@@ -236,7 +236,7 @@
                                     </AnchorPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="customer_form" layoutX="178.0" layoutY="112.0" prefHeight="544.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="customer_form" layoutX="178.0" layoutY="112.0" prefHeight="544.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane layoutX="12.8" layoutY="15.2" prefHeight="536.0" prefWidth="889.0" stylesheets="@DashboardDesign.css" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">
                                        <children>
