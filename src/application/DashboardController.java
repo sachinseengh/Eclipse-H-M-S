@@ -2,24 +2,33 @@ package application;
 
 import java.net.URL;
 import java.sql.ResultSet;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.scene.Parent;
 
 public class DashboardController implements Initializable{
 
@@ -133,11 +142,13 @@ public class DashboardController implements Initializable{
     @FXML
     private Label dashboard_totalincome;
 
-    @FXML
-    private FontAwesomeIcon logout_btn;
+   
 
     @FXML
     private Button minimize_btn;
+    
+    @FXML
+    private Button logout_btn;
 
 	
     private String[] comboroomtype={"Single","Double","Triple"};
@@ -245,7 +256,96 @@ public class DashboardController implements Initializable{
     	   
        
     }
+    
+    
+    
+    //TO SELECT TABLE DATA
+    
+    public void selectData() {
+    	Data data = availablerooms_tableview.getSelectionModel().getSelectedItem();
+    	
+    	int num = availablerooms_tableview.getSelectionModel().getSelectedIndex();
+    	
+    	if((num-1)<-1)
+    		return;
+    	
+    	availablerooms_roomno.setText(String.valueOf(data.getRoomNumber()));
+    	availablerooms_roomtype.setValue(data.getRoomType());
+    	availablerooms_roomstatus.setValue(data.getStatus());
+    	availablerooms_price.setText(String.valueOf(data.getPrice()));
+    
+    }
 	
+    private double x =0;
+    private double y=0;
+    
+    //logout functionality
+    public void logout() {
+    	
+    	
+    	
+    	Alert alert = new Alert(AlertType.CONFIRMATION);
+    	alert.setTitle("Confirm logout");
+        alert.setHeaderText(null);
+        alert.setContentText("Do you want to logout?");
+//      alert.showAndWait();
+    	
+    	Optional<ButtonType> option = alert.showAndWait();
+    	
+    	if(option.get().equals(ButtonType.OK)) {
+    	
+    	try {
+    	Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+    	Stage stage = new Stage();
+    	Scene scene= new Scene(root);
+    	
+    	
+    	
+    	
+    	
+
+		root.setOnMousePressed(new EventHandler<MouseEvent>(){
+	           @Override
+	           public void handle(MouseEvent event) {
+	               x= event.getSceneX();
+	               y= event.getSceneY();
+	           }
+
+	         });
+
+	         root.setOnMouseDragged(new EventHandler<MouseEvent>(){
+	           @Override
+	           public void handle(MouseEvent event) {
+	              stage.setX(event.getScreenX()-x);
+	              stage.setY(event.getScreenY()-y);
+	              
+	              stage.setOpacity(0.9);
+	           }
+
+	         });
+	         
+	         root.setOnMouseReleased(new EventHandler<MouseEvent>(){
+	           @Override
+	           public void handle(MouseEvent event) {
+	              stage.setOpacity(1);
+	           }
+
+	         });
+    	
+    	
+    	
+    	
+    	
+    	logout_btn.getScene().getWindow().hide();
+	         
+	         
+    	stage.setScene(scene);
+    	stage.initStyle(StageStyle.TRANSPARENT);
+    	stage.show();
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}}
+    }
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
