@@ -207,7 +207,7 @@
                                           <Label layoutX="40.0" layoutY="171.0" text="Price :" />
                                           <Button fx:id="availablerooms_addbtn" layoutX="16.0" layoutY="287.0" mnemonicParsing="false" onAction="#roomAdd" prefHeight="34.0" prefWidth="102.0" styleClass="add-btn" stylesheets="@DashboardDesign.css" text="Add" />
                                           <Button fx:id="availablerooms_update" layoutX="139.0" layoutY="287.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="update-btn" stylesheets="@DashboardDesign.css" text="Update" />
-                                          <Button fx:id="availablerooms_clearbtn" layoutX="14.0" layoutY="348.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="clear-btn" stylesheets="@DashboardDesign.css" text="Clear" />
+                                          <Button fx:id="availablerooms_clearbtn" layoutX="14.0" layoutY="348.0" mnemonicParsing="false" onAction="#clearData" prefHeight="34.0" prefWidth="102.0" styleClass="clear-btn" stylesheets="@DashboardDesign.css" text="Clear" />
                                           <Button fx:id="availableroom_deletebtn" layoutX="137.0" layoutY="348.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" styleClass="delete-btn" stylesheets="@DashboardDesign.css" text="Delete" />
                                           <Button fx:id="availablerooms_checkin" layoutX="23.0" layoutY="461.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="216.0" styleClass="check-in-btn" stylesheets="@DashboardDesign.css" text="Check-in" />
                                        </children>

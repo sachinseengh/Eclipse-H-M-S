@@ -1,9 +1,12 @@
 package application;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.AreaChart;
@@ -15,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 public class DashboardController implements Initializable{
@@ -58,19 +62,19 @@ public class DashboardController implements Initializable{
     private TextField availablerooms_searchtxtfield;
 
     @FXML
-    private TableColumn<?, ?> availablerooms_tablecol_price;
+    private TableColumn<Data, Integer> availablerooms_tablecol_price;
 
     @FXML
-    private TableColumn<?, ?> availablerooms_tablecol_roomno;
+    private TableColumn<Data, Integer> availablerooms_tablecol_roomno;
 
     @FXML
-    private TableColumn<?, ?> availablerooms_tablecol_roomstatus;
+    private TableColumn<Data, String> availablerooms_tablecol_roomstatus;
 
     @FXML
-    private TableColumn<?, ?> availablerooms_tablecol_roomtype;
+    private TableColumn<Data, String> availablerooms_tablecol_roomtype;
 
     @FXML
-    private TableView<?> availablerooms_tableview;
+    private TableView<Data> availablerooms_tableview;
 
     @FXML
     private Button availablerooms_update;
@@ -161,7 +165,7 @@ public class DashboardController implements Initializable{
             alert.showAndWait();
     	}else {
     		Conn conn= new Conn();
-    		String sql="insert into room(roomno,roomtype,roomstatus,price)values('"+availablerooms_roomno.
+    		String sql="insert into room(roomNumber,roomtype,status,price)values('"+availablerooms_roomno.
     				getText()+"','"+(String)availablerooms_roomtype.getSelectionModel().getSelectedItem()+"','"+(String)availablerooms_roomstatus
     				.getSelectionModel().getSelectedItem()+"','"+availablerooms_price.getText()+"')";
     				
@@ -173,19 +177,81 @@ public class DashboardController implements Initializable{
                 alert.setHeaderText(null);
                 alert.setContentText("Room Added Successfully");
                 alert.show();
+                
+                
+                
+                
+                
+                clearData();
+                showData();
     		}catch(Exception e) {
     			e.printStackTrace();
     		}
     	}
     }
     
+    public void clearData() {
+    	 
+    	availablerooms_roomno.setText("");
+    	availablerooms_roomtype.getSelectionModel().clearSelection();
+    	availablerooms_roomstatus.getSelectionModel().clearSelection();
+    	availablerooms_price.setText("");
+    	
+    	
+    		
+    }
     
+//  for Table data
+    ObservableList<Data> listdata;
+    public ObservableList<Data> dataList(){
+        Conn conn= new Conn();
+        
+        listdata= FXCollections.observableArrayList();
+        
+        String sql = "select * from room";
+        
+        try{
+            
+            ResultSet result = conn.s.executeQuery(sql);
+            
+            Data data;
+            
+            while(result.next()){
+                data = new Data(result.getInt("roomNumber"),result.getString("roomtype"),result.getString("status"),result.getDouble("price"));
+                
+                listdata.add(data);
+            }
+        }catch(Exception e){
+           e.printStackTrace(); 
+        }
+        
+        return listdata;
+        
+        
+    }
+    
+////    To show data
+    
+    public void showData(){
+    	 ObservableList<Data> showList = dataList();
+        
+    	 availablerooms_tablecol_roomno.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
+    	    availablerooms_tablecol_roomtype.setCellValueFactory(new PropertyValueFactory<>("roomType"));
+    	    availablerooms_tablecol_roomstatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+    	    availablerooms_tablecol_price.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+    	    // Set the items of the TableView to the populated ObservableList
+    	    availablerooms_tableview.setItems(showList);
+    	   
+       
+    }
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		comboRoomType();
 		comboRoomStatus();
+		showData();
 	}
 	
 }

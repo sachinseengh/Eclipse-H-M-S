@@ -2,32 +2,36 @@ package application;
 
 
 public class Data{
-	private Integer room_no;
-	private String  room_type;
-	private String room_status;
-	private Integer room_price;
+	private Integer roomNumber;
+	private String  roomType;
+	private String status;
+	private Double price;
 	
 	
 	
-	public Data(Integer room_no,String room_type,String room_status,Integer room_price) {
-		this.room_no=room_no;
-		this.room_type=room_type;
-		this.room_status=room_status;
-		this.room_price=room_price;
+	public Data(Integer roomNumber,String roomType,String status,Double price) {
+		this.roomNumber=roomNumber;
+		this.roomType=roomType;
+		this.status=status;
+		this.price=price;
 		
 	}
 	
-	public Integer getRoomNo(){
-		return room_no;
+	
+	//to Show in table it matches the name  and set property value check the function name like set PropertyValueFactory("id") it means it call getid function
+	//note it ignore case
+	
+	public Integer getRoomNumber(){
+		return roomNumber;
 	}
 	public String getRoomType() {
-		return room_type;
+		return roomType;
 	}
-	public String getRoomStatus() {
-		return room_status;
+	public String getStatus() {
+		return status;
 	}
-	public Integer getRoomPrice() {
-		return room_price;
+	public Double getPrice() {
+		return price;
 	}
 	
 }
