@@ -1,5 +1,6 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -475,6 +476,56 @@ public class DashboardController implements Initializable{
     	}}
     }
    
+    
+    
+    
+    //checkin form
+    private double x1 =0;
+    private double y1=0;
+    public void checkinform() throws IOException {
+    	try {
+    	Parent root = FXMLLoader.load(getClass().getResource("Checkin.fxml"));
+    	
+    	Stage stage= new Stage();
+    	
+    	
+    	root.setOnMousePressed(new EventHandler<MouseEvent>(){
+	           @Override
+	           public void handle(MouseEvent event) {
+	               x1= event.getSceneX();
+	               y1= event.getSceneY();
+	           }
+
+	         });
+
+	         root.setOnMouseDragged(new EventHandler<MouseEvent>(){
+	           @Override
+	           public void handle(MouseEvent event) {
+	             stage.setX(event.getScreenX()-x1);
+	              stage.setY(event.getScreenY()-y1);
+	              
+	              stage.setOpacity(0.9);
+	           }
+
+	         });
+	         
+	         root.setOnMouseReleased(new EventHandler<MouseEvent>(){
+	           @Override
+	           public void handle(MouseEvent event) {
+	        	   stage.setOpacity(1);
+	           }
+
+	         });
+    	
+	         stage.initStyle(StageStyle.UNDECORATED);
+    	Scene scene= new Scene(root);
+    	stage.setScene(scene);
+    	stage.show();
+    	
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    }
     
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

@@ -209,7 +209,7 @@
                                           <Button fx:id="availablerooms_update" layoutX="139.0" layoutY="287.0" mnemonicParsing="false" onAction="#update" prefHeight="34.0" prefWidth="102.0" styleClass="update-btn" stylesheets="@DashboardDesign.css" text="Update" />
                                           <Button fx:id="availablerooms_clearbtn" layoutX="14.0" layoutY="348.0" mnemonicParsing="false" onAction="#clearData" prefHeight="34.0" prefWidth="102.0" styleClass="clear-btn" stylesheets="@DashboardDesign.css" text="Clear" />
                                           <Button fx:id="availableroom_deletebtn" layoutX="137.0" layoutY="348.0" mnemonicParsing="false" onAction="#delete" prefHeight="34.0" prefWidth="102.0" styleClass="delete-btn" stylesheets="@DashboardDesign.css" text="Delete" />
-                                          <Button fx:id="availablerooms_checkin" layoutX="23.0" layoutY="461.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="216.0" styleClass="check-in-btn" stylesheets="@DashboardDesign.css" text="Check-in" />
+                                          <Button fx:id="availablerooms_checkin" layoutX="23.0" layoutY="461.0" mnemonicParsing="false" onAction="#checkinform" prefHeight="38.0" prefWidth="216.0" styleClass="check-in-btn" stylesheets="@DashboardDesign.css" text="Check-in" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane layoutX="281.0" layoutY="8.0" prefHeight="526.0" stylesheets="@DashboardDesign.css" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0">
