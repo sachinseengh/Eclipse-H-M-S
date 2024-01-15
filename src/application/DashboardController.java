@@ -275,9 +275,10 @@ public class DashboardController implements Initializable{
     
 ////    To show data
     public void showData(){
+    	
     	 ObservableList<Data> showList = dataList();
         
-    	 availablerooms_tablecol_roomno.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
+    	    availablerooms_tablecol_roomno.setCellValueFactory(new PropertyValueFactory<>("roomNumber"));
     	    availablerooms_tablecol_roomtype.setCellValueFactory(new PropertyValueFactory<>("roomType"));
     	    availablerooms_tablecol_roomstatus.setCellValueFactory(new PropertyValueFactory<>("status"));
     	    availablerooms_tablecol_price.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -285,7 +286,7 @@ public class DashboardController implements Initializable{
     	    // Set the items of the TableView to the populated ObservableList
     	    availablerooms_tableview.setItems(showList);
     	   
-       
+    	
     }
     
     

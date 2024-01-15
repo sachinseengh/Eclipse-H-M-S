@@ -3,6 +3,7 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -56,21 +57,29 @@
                                           <Font name="SansSerif Regular" size="13.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="14.0" layoutY="86.0" text="First Name" />
-                                    <TextField fx:id="firstname_txtfield" layoutX="14.0" layoutY="104.0" styleClass="textfield-avl" stylesheets="@DashboardDesign.css" />
-                                    <Label layoutX="195.0" layoutY="83.0" text="Last Name" />
-                                    <TextField fx:id="lastname_textfield" layoutX="195.0" layoutY="101.0" styleClass="textfield-avl" stylesheets="@DashboardDesign.css" />
-                                    <Label layoutX="14.0" layoutY="143.0" text="Phone" />
-                                    <TextField fx:id="phone_txtfield" layoutX="14.0" layoutY="161.0" styleClass="textfield-avl" stylesheets="@DashboardDesign.css" />
-                                    <Label layoutX="195.0" layoutY="143.0" text="Email" />
-                                    <TextField fx:id="email_txtfield" layoutX="195.0" layoutY="161.0" styleClass="textfield-avl" stylesheets="@DashboardDesign.css" />
-                                    <Label layoutX="15.0" layoutY="218.0" text="Check-In" />
-                                    <Label layoutX="192.0" layoutY="218.0" text="Check-Out" />
-                                    <DatePicker fx:id="checkin_date" layoutX="9.0" layoutY="246.0" prefHeight="26.0" prefWidth="140.0" promptText="DD-MM-YYYY" />
-                                    <DatePicker fx:id="checkout_date" layoutX="192.0" layoutY="246.0" prefHeight="26.0" prefWidth="148.0" promptText="DD-MM-YYYY" />
+                                    <Label layoutX="14.0" layoutY="67.0" text="First Name" />
+                                    <TextField fx:id="firstname_txtfield" layoutX="14.0" layoutY="85.0" styleClass="textfield-avl" stylesheets="@DashboardDesign.css" />
+                                    <Label layoutX="195.0" layoutY="64.0" text="Last Name" />
+                                    <TextField fx:id="lastname_textfield" layoutX="195.0" layoutY="82.0" styleClass="textfield-avl" stylesheets="@DashboardDesign.css" />
+                                    <Label layoutX="14.0" layoutY="124.0" text="Phone" />
+                                    <TextField fx:id="phone_txtfield" layoutX="14.0" layoutY="142.0" styleClass="textfield-avl" stylesheets="@DashboardDesign.css" />
+                                    <Label layoutX="195.0" layoutY="124.0" text="Email" />
+                                    <TextField fx:id="email_txtfield" layoutX="195.0" layoutY="142.0" styleClass="textfield-avl" stylesheets="@DashboardDesign.css" />
+                                    <Label layoutX="15.0" layoutY="248.0" text="Check-In" />
+                                    <Label layoutX="192.0" layoutY="248.0" text="Check-Out" />
+                                    <DatePicker fx:id="checkin_date" layoutX="9.0" layoutY="276.0" prefHeight="26.0" prefWidth="140.0" promptText="DD-MM-YYYY" />
+                                    <DatePicker fx:id="checkout_date" layoutX="192.0" layoutY="276.0" onAction="#totalprice" prefHeight="26.0" prefWidth="148.0" promptText="DD-MM-YYYY" />
                                     <Button fx:id="reset_btn" layoutX="12.0" layoutY="369.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="101.0" text="Reset" />
                                     <Button fx:id="receipt_btn" layoutX="126.0" layoutY="369.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="101.0" text="Receipt" />
-                                    <Button fx:id="checkin_btn" layoutX="239.0" layoutY="369.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="101.0" text="Check-In" />
+                                    <Button fx:id="checkin_btn" layoutX="239.0" layoutY="369.0" mnemonicParsing="false" onAction="#checkin" prefHeight="37.0" prefWidth="101.0" text="Check-In" />
+                                    <Label layoutX="204.0" layoutY="313.0" text="Total Days :" />
+                                    <Label layoutX="231.0" layoutY="339.0" text="Total :" />
+                                    <Label fx:id="checkin_total" layoutX="271.0" layoutY="339.0" prefHeight="0.0" prefWidth="37.0" text="\$0.0" />
+                                    <Label fx:id="checkin_totaldays" layoutX="271.0" layoutY="313.0" text="0" />
+                                    <Label layoutX="20.0" layoutY="184.0" text="Room Type" />
+                                    <Label layoutX="197.0" layoutY="184.0" text="Room No" />
+                                    <ComboBox fx:id="checkin_roomtype" layoutX="8.0" layoutY="206.0" prefWidth="150.0" promptText="Select Room Type" styleClass="combo-box" stylesheets="@DashboardDesign.css" />
+                                    <ComboBox fx:id="checkin_roomno" layoutX="190.0" layoutY="206.0" onAction="#comboRoomNo" onMouseClicked="#comboRoomNo" onShowing="#comboRoomNo" onShown="#comboRoomNo" prefWidth="150.0" promptText="Select Room No" styleClass="combo-box" stylesheets="@DashboardDesign.css" />
                                  </children>
                               </AnchorPane>
                            </children>
