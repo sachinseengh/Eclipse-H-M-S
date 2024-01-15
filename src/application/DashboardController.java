@@ -516,8 +516,11 @@ public class DashboardController implements Initializable{
 	           }
 
 	         });
+	         
+	         
+	         stage.setMinHeight(486.4+20);
+	         stage.setMinWidth(364+20);
     	
-	         stage.initStyle(StageStyle.UNDECORATED);
     	Scene scene= new Scene(root);
     	stage.setScene(scene);
     	stage.show();
