@@ -2,6 +2,7 @@ package application;
 
 import java.net.URL;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -166,7 +167,7 @@ public class DashboardController implements Initializable{
     
     
     //Adding room
-    public void roomAdd() {
+    public void roomAdd() throws SQLException {
     	
     	if(availablerooms_roomno.getText().isEmpty()||availablerooms_roomtype.getSelectionModel().isEmpty()
     			|| availablerooms_roomstatus.getSelectionModel().
@@ -180,13 +181,37 @@ public class DashboardController implements Initializable{
             alert.showAndWait();
     	}else {
     		Conn conn= new Conn();
-    		String sql="insert into room(roomNumber,roomtype,status,price)values('"+availablerooms_roomno.
+    		//first check if the room already exist or not
+    		
+    		String sql = "Select * from room where roomNumber='"+availablerooms_roomno.getText()+"'";
+    		
+    		ResultSet rs = null;
+    		try {
+    		
+    		rs= conn.s.executeQuery(sql);
+    		}catch(Exception e) {
+    			
+    			e.printStackTrace();
+    		}
+    		
+    		if(rs.next()) {
+    			Alert alert = new Alert(AlertType.ERROR);
+        		alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Room Already Exists");
+                alert.showAndWait();
+    		}else {
+    	
+    		
+    		
+    		
+    		String sql2="insert into room(roomNumber,roomtype,status,price)values('"+availablerooms_roomno.
     				getText()+"','"+(String)availablerooms_roomtype.getSelectionModel().getSelectedItem()+"','"+(String)availablerooms_roomstatus
     				.getSelectionModel().getSelectedItem()+"','"+availablerooms_price.getText()+"')";
     				
     		try {
     			
-    			conn.s.executeUpdate(sql);
+    			conn.s.executeUpdate(sql2);
     			Alert alert = new Alert(AlertType.INFORMATION);
         		alert.setTitle("SuccessFul");
                 alert.setHeaderText(null);
@@ -201,6 +226,7 @@ public class DashboardController implements Initializable{
                 showData();
     		}catch(Exception e) {
     			e.printStackTrace();
+    		}
     		}
     	}
     }
@@ -263,6 +289,11 @@ public class DashboardController implements Initializable{
     
     
     //TO SELECT TABLE DATA
+    
+    
+    
+//    Add this function to the mouseclick of table view
+    
     public void AvailableselectData() {
     	Data data = availablerooms_tableview.getSelectionModel().getSelectedItem();
     	
