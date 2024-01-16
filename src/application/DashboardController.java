@@ -11,6 +11,9 @@ import java.util.ResourceBundle;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -147,6 +150,7 @@ public class DashboardController implements Initializable{
     @FXML
     private Label dashboard_totalincome;
 
+    
    
 
     @FXML
@@ -581,14 +585,116 @@ public class DashboardController implements Initializable{
     	 customer_tablecol_lastname.setCellValueFactory(new PropertyValueFactory<>("Lname"));
     	 customer_tablecol_phoneno.setCellValueFactory(new PropertyValueFactory<>("Phone"));
     	 customer_tablecol_email.setCellValueFactory(new PropertyValueFactory<>("Email"));
+    	 
     	 customer_tablecol_checkin.setCellValueFactory(new PropertyValueFactory<>("Checkin"));
     	 customer_tablecol_checkout.setCellValueFactory(new PropertyValueFactory<>("Checkout"));
+    	
     	    // Set the items of the TableView to the populated ObservableList
     	    customer_tableview.setItems(showList);
     	   
     	
     }
     
+    
+    
+    
+    //Search Feature
+    
+    public void customerSearch() {
+    	try {
+    	FilteredList<CustomerData> filter = new FilteredList<>(customerlistdata,e->true);
+    	customer_searchfield.textProperty().addListener((Observable,oldValue,newValue)->{
+    		
+    		filter.setPredicate(predicateCustomer ->{
+    			
+    			if(newValue == null ) {
+    				return true;
+    			}
+    			String searchkey= newValue.toLowerCase();
+//    			System.out.print(searchkey);
+    			
+    			if(predicateCustomer.getCustomerNo().toString().contains(searchkey)) {
+    				return true;
+    			}else if(predicateCustomer.getFname().toLowerCase().contains(searchkey)) {
+    				return true;
+    			}else if(predicateCustomer.getLname().toLowerCase().contains(searchkey)) {
+    				return true;
+    			}else if(predicateCustomer.getPhone().toLowerCase().contains(searchkey)) {
+    				return true;
+    			}else if(predicateCustomer.getEmail().toLowerCase().contains(searchkey)) {
+    				
+    				return true;
+    			}else if(predicateCustomer.getCheckin().toLowerCase().contains(searchkey)) {
+    				return true;
+    			}else if(predicateCustomer.getCheckout().toLowerCase().contains(searchkey)) {
+    				return true;
+    			}else {
+    				return false;
+    			}
+    		});
+    	});
+    	SortedList<CustomerData> sortList = new SortedList<>(filter);
+    	sortList.comparatorProperty().bind(customer_tableview.comparatorProperty());
+    	customer_tableview.setItems(sortList);
+    	
+    	
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
+    }
+    
+    
+    
+    public void switchScene(ActionEvent e) {
+    	if(e.getSource()==dashboard_btn) {
+    		
+    		dashboard_form.setVisible(true);
+    		availablerooms_form.setVisible(false);
+    		customer_form.setVisible(false);
+    		
+    		
+    		
+    	}else if(e.getSource()==availablerooms_btn) {
+    		dashboard_form.setVisible(false);
+    		availablerooms_form.setVisible(true);
+    		customer_form.setVisible(false);
+    		
+    	}else if(e.getSource()==customer_btn) {
+    		dashboard_form.setVisible(false);
+    		availablerooms_form.setVisible(false);
+    		customer_form.setVisible(true);
+    	}
+    }
+    
+    
+    public void availableRoomsSearch() {
+    	FilteredList<Data> filter = new FilteredList<>(listdata,e -> true);
+    	availablerooms_searchtxtfield.textProperty().addListener((Observable,
+    			oldValue,newValue)->{
+    				
+    	filter.setPredicate(predicateRoomData ->{
+    		if(newValue == null || newValue.isEmpty()) {
+    			return true;
+    		}
+    		String searchkey= newValue.toLowerCase();
+    		
+    		if(predicateRoomData.getRoomNumber().toString().contains(searchkey)) {
+    			return true;
+    		}else if(predicateRoomData.getRoomType().toLowerCase().contains(searchkey)) {
+    			return true;
+    		}else if(predicateRoomData.getPrice().toString().contains(searchkey)) {
+    			return true;
+    		}else if(predicateRoomData.getStatus().toLowerCase().contains(searchkey)) {
+    			return true;
+    		}else return false;
+    		
+    	});
+    			});
+    	
+    	SortedList<Data> sortList= new SortedList<>(filter);
+    	sortList.comparatorProperty().bind(availablerooms_tableview.comparatorProperty());
+    	availablerooms_tableview.setItems(sortList);
+    }
     
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -597,6 +703,9 @@ public class DashboardController implements Initializable{
 		comboRoomStatus();
 		showData();
 		customershowData();
+		customerSearch();
+		
+		availableRoomsSearch();
 	}
 	
 }

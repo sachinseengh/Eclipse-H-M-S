@@ -161,7 +161,7 @@ public class CheckinController implements Initializable{
 	    	String sql= "insert into customer (customer_id,fname,lname,phone,email,roomtype,roomno,"
 	    			+ "checkin,checkout)values('"+ Integer.parseInt(customer_num.getText())+"','"+firstname_txtfield
 	    			.getText()+"','"+lastname_textfield.getText()+"','"+phone_txtfield.getText()+"',"
-	    					+ "'"+email_txtfield.getText()+"','"+(String)checkin_roomtype.getSelectionModel().getSelectedItem()+"',"
+	    					+ "'"+email_txtfield.getText()+"','"+checkin_total.getText()+"','"+(String)checkin_roomtype.getSelectionModel().getSelectedItem()+"',"
 	    							+ "'"+roomno+"','"+checkin_date.getValue()+"',"
 	    									+ "'"+checkout_date.getValue()+"')";
 	    	

@@ -1,5 +1,7 @@
 package application;
 
+import java.util.Date;
+
 public class CustomerData {
 	
 	private Integer customer_no;
@@ -9,17 +11,19 @@ public class CustomerData {
 	private String email;
 	private String checkin;
 	private String checkout;
+	
 	public CustomerData(int custno,String fname,String lname,String phone,String email,String Checkin,String checkout) {
 		this.customer_no=custno;
 		this.fname=fname;
 		this.lname=lname;
 		this.phone=phone;
 		this.email=email;
-	this.checkin=Checkin;
+	
+	    this.checkin=Checkin;
 		this.checkout=checkout;
 	}
 	
-	public int getCustomerNo() {
+	public Integer getCustomerNo() {
 		return customer_no;
 	}
 	
@@ -36,6 +40,7 @@ public class CustomerData {
 	public String getEmail() {
 		return email;
 	}
+	
 	public String getCheckin() {
 		return checkin;
 	}
