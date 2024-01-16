@@ -104,28 +104,30 @@ public class DashboardController implements Initializable{
     private TextField customer_searchfield;
 
     @FXML
-    private TableColumn<?, ?> customer_tablecol_checkin;
+    private TableColumn<CustomerData, String> customer_tablecol_checkin;
 
     @FXML
-    private TableColumn<?, ?> customer_tablecol_checkout;
+    private TableColumn<CustomerData, String> customer_tablecol_checkout;
 
     @FXML
-    private TableColumn<?, ?> customer_tablecol_customerno;
+    private TableColumn<CustomerData, Integer> customer_tablecol_customerno;
 
     @FXML
-    private TableColumn<?, ?> customer_tablecol_firstname;
+    private TableColumn<CustomerData, String> customer_tablecol_email;
 
     @FXML
-    private TableColumn<?, ?> customer_tablecol_lastname;
+    private TableColumn<CustomerData, String> customer_tablecol_firstname;
 
     @FXML
-    private TableColumn<?, ?> customer_tablecol_phoneno;
+    private TableColumn<CustomerData, String> customer_tablecol_lastname;
 
     @FXML
-    private TableColumn<?, ?> customer_tablecol_totalpayment;
+    private TableColumn<CustomerData, String> customer_tablecol_phoneno;
 
     @FXML
-    private TableView<?> customer_tableview;
+    private TableView<CustomerData> customer_tableview;
+
+   
 
     @FXML
     private AreaChart<?, ?> dashboard_areachart;
@@ -485,6 +487,8 @@ public class DashboardController implements Initializable{
     private double x1 =0;
     private double y1=0;
     public void checkinform() throws IOException {
+
+    	
     	try {
     	Parent root = FXMLLoader.load(getClass().getResource("Checkin.fxml"));
     	
@@ -532,12 +536,67 @@ public class DashboardController implements Initializable{
     	}
     }
     
+    
+    
+    
+    
+//    NOW FOR CUSTOMER DATA
+    ObservableList<CustomerData> customerlistdata;
+    public ObservableList<CustomerData> customerdataList(){
+        Conn conn= new Conn();
+        
+        customerlistdata= FXCollections.observableArrayList();
+        
+        String sql = "select * from customer";
+        
+        try{
+            
+            ResultSet result = conn.s.executeQuery(sql);
+            
+            CustomerData customerData;
+            
+            while(result.next()){
+                customerData = new CustomerData(result.getInt("customer_no"),result.getString("fname"),result.getString("lname"),result.getString("phone"),
+                		result.getString("email"),result.getString("checkin"),result.getString("checkout"));
+                
+                customerlistdata.add(customerData);
+            }
+        }catch(Exception e){
+           e.printStackTrace(); 
+        }
+        
+        return customerlistdata;
+        
+        
+    }
+    
+////    To show data
+    public void customershowData(){
+    	
+    	 ObservableList<CustomerData> showList = customerdataList();
+    	
+        
+    	 customer_tablecol_customerno.setCellValueFactory(new PropertyValueFactory<>("CustomerNo"));
+    	 customer_tablecol_firstname.setCellValueFactory(new PropertyValueFactory<>("Fname"));
+    	 customer_tablecol_lastname.setCellValueFactory(new PropertyValueFactory<>("Lname"));
+    	 customer_tablecol_phoneno.setCellValueFactory(new PropertyValueFactory<>("Phone"));
+    	 customer_tablecol_email.setCellValueFactory(new PropertyValueFactory<>("Email"));
+    	 customer_tablecol_checkin.setCellValueFactory(new PropertyValueFactory<>("Checkin"));
+    	 customer_tablecol_checkout.setCellValueFactory(new PropertyValueFactory<>("Checkout"));
+    	    // Set the items of the TableView to the populated ObservableList
+    	    customer_tableview.setItems(showList);
+    	   
+    	
+    }
+    
+    
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		comboRoomType();
 		comboRoomStatus();
 		showData();
+		customershowData();
 	}
 	
 }

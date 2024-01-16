@@ -181,7 +181,7 @@
                                     </AnchorPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="availablerooms_form" layoutX="61.0" layoutY="120.0" prefHeight="544.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="availablerooms_form" layoutX="61.0" layoutY="120.0" prefHeight="544.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane layoutX="10.0" layoutY="8.0" prefHeight="526.0" prefWidth="269.0" stylesheets="@DashboardDesign.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="8.0">
                                        <styleClass>
@@ -236,7 +236,7 @@
                                     </AnchorPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="customer_form" layoutX="178.0" layoutY="112.0" prefHeight="544.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <AnchorPane fx:id="customer_form" layoutX="178.0" layoutY="112.0" prefHeight="544.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane layoutX="12.8" layoutY="15.2" prefHeight="536.0" prefWidth="889.0" stylesheets="@DashboardDesign.css" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">
                                        <children>
@@ -246,7 +246,7 @@
                                               <TableColumn fx:id="customer_tablecol_firstname" minWidth="0.0" prefWidth="131.99993896484375" text="First Name" />
                                                 <TableColumn fx:id="customer_tablecol_lastname" minWidth="0.0" prefWidth="96.80003356933594" text="Last Name" />
                                                 <TableColumn fx:id="customer_tablecol_phoneno" minWidth="0.0" prefWidth="116.0" text="Phone no." />
-                                                <TableColumn fx:id="customer_tablecol_totalpayment" minWidth="0.0" prefWidth="122.39996337890625" text="Total Payment" />
+                                                <TableColumn fx:id="customer_tablecol_email" minWidth="0.0" prefWidth="122.39996337890625" text="Email" />
                                                 <TableColumn fx:id="customer_tablecol_checkin" minWidth="0.0" prefWidth="136.79986572265625" text="Check-in" />
                                                 <TableColumn fx:id="customer_tablecol_checkout" minWidth="0.0" prefWidth="136.79986572265625" text="Check-out" />
                                             </columns>
