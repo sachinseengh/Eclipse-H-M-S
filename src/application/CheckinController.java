@@ -96,7 +96,7 @@ public class CheckinController implements Initializable{
 	    	Conn c = new Conn();
 	    	
 	    	try {
-	    		String sql= "select count(customer_id) from customer";
+	    		String sql= "select count(customer_no) from customer";
 	    		ResultSet rs = c.s.executeQuery(sql);
 	    		
 	    		
@@ -158,10 +158,10 @@ public class CheckinController implements Initializable{
 	    public void checkin() {
 	    	
 	     roomno=String.valueOf(checkin_roomno.getValue());
-	    	String sql= "insert into customer (customer_id,fname,lname,phone,email,roomtype,roomno,"
+	    	String sql= "insert into customer (customer_no,fname,lname,phone,email,roomtype,roomno,"
 	    			+ "checkin,checkout)values('"+ Integer.parseInt(customer_num.getText())+"','"+firstname_txtfield
 	    			.getText()+"','"+lastname_textfield.getText()+"','"+phone_txtfield.getText()+"',"
-	    					+ "'"+email_txtfield.getText()+"','"+checkin_total.getText()+"','"+(String)checkin_roomtype.getSelectionModel().getSelectedItem()+"',"
+	    					+ "'"+email_txtfield.getText()+"','"+(String)checkin_roomtype.getSelectionModel().getSelectedItem()+"',"
 	    							+ "'"+roomno+"','"+checkin_date.getValue()+"',"
 	    									+ "'"+checkout_date.getValue()+"')";
 	    	
@@ -265,7 +265,7 @@ public class CheckinController implements Initializable{
 	    
 	    
 	    public void reset() {
-	    	String sql= "insert into customer (customer_id,fname,lname,phone,email,roomtype,roomno,"
+	    	String sql= "insert into customer (customer_no,fname,lname,phone,email,roomtype,roomno,"
 	    			+ "checkin,checkout)values('"+ Integer.parseInt(customer_num.getText())+"','"+firstname_txtfield
 	    			.getText()+"','"+lastname_textfield.getText()+"','"+phone_txtfield.getText()+"',"
 	    					+ "'"+email_txtfield.getText()+"','"+(String)checkin_roomtype.getSelectionModel().getSelectedItem()+"',"

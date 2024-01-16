@@ -3,8 +3,11 @@ package application;
 import java.io.IOException;
 
 import java.net.URL;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -696,6 +699,30 @@ public class DashboardController implements Initializable{
     	availablerooms_tableview.setItems(sortList);
     }
     
+    
+    
+//    Dashboard booking
+    public void dashboardTodayBooking() {
+    	Date date = new Date();
+
+        // Convert java.util.Date to java.sql.Date with UTC timezone
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+    
+    String sql="select count(customer_no) from customer where checkin='"+sqlDate+"'";
+    int count =0;
+    try {
+    	Conn c = new Conn();
+    	ResultSet rs = c.s.executeQuery(sql);
+    	
+    	while(rs.next()) {
+    		count = rs.getInt(1);
+    	}
+    	
+    	dashboard_todaybooktxt.setText(String.valueOf(count));
+    }catch(Exception e) {
+    	e.printStackTrace();
+    }
+    }
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -706,6 +733,7 @@ public class DashboardController implements Initializable{
 		customerSearch();
 		
 		availableRoomsSearch();
+		dashboardTodayBooking();
 	}
 	
 }
