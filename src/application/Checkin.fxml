@@ -69,12 +69,12 @@
                                     <Label layoutX="192.0" layoutY="248.0" text="Check-Out" />
                                     <DatePicker fx:id="checkin_date" layoutX="9.0" layoutY="276.0" prefHeight="26.0" prefWidth="140.0" promptText="DD-MM-YYYY" />
                                     <DatePicker fx:id="checkout_date" layoutX="192.0" layoutY="276.0" onAction="#totalprice" prefHeight="26.0" prefWidth="148.0" promptText="DD-MM-YYYY" />
-                                    <Button fx:id="reset_btn" layoutX="12.0" layoutY="369.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="101.0" text="Reset" />
+                                    <Button fx:id="reset_btn" layoutX="12.0" layoutY="369.0" mnemonicParsing="false" onAction="#reset" prefHeight="37.0" prefWidth="101.0" text="Reset" />
                                     <Button fx:id="receipt_btn" layoutX="126.0" layoutY="369.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="101.0" text="Receipt" />
                                     <Button fx:id="checkin_btn" layoutX="239.0" layoutY="369.0" mnemonicParsing="false" onAction="#checkin" prefHeight="37.0" prefWidth="101.0" text="Check-In" />
                                     <Label layoutX="204.0" layoutY="313.0" text="Total Days :" />
                                     <Label layoutX="231.0" layoutY="339.0" text="Total :" />
-                                    <Label fx:id="checkin_total" layoutX="271.0" layoutY="339.0" prefHeight="0.0" prefWidth="37.0" text="\$0.0" />
+                                    <Label fx:id="checkin_total" layoutX="271.0" layoutY="339.0" prefHeight="18.0" prefWidth="77.0" text="\$0.0" />
                                     <Label fx:id="checkin_totaldays" layoutX="271.0" layoutY="313.0" text="0" />
                                     <Label layoutX="20.0" layoutY="184.0" text="Room Type" />
                                     <Label layoutX="197.0" layoutY="184.0" text="Room No" />

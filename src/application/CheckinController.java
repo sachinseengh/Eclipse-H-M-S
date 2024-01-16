@@ -1,6 +1,7 @@
 package application;
 
 import java.net.URL;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +21,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import application.DashboardController.*;
+
 public class CheckinController implements Initializable{
 	
 	
@@ -129,8 +130,8 @@ public class CheckinController implements Initializable{
 	    public void comboRoomNo() {
 	    
 	    	
-	    	String sql="Select * from room where roomType ='"+(String)checkin_roomtype.getSelectionModel().getSelectedItem()+"' and status"
-	    			+ "='Available'";
+	    	String sql="Select * from room where roomType ='"+(String)checkin_roomtype.getSelectionModel().getSelectedItem()+"' and roomstatus"
+	    			+ "='Available' order by  roomno  Asc";
 	    	
 	    	try {
 	    		ObservableList listdata = FXCollections.observableArrayList();
@@ -140,7 +141,7 @@ public class CheckinController implements Initializable{
 	    		
 	    		
 	    		while(rs.next()) {
-	    			listdata.add(rs.getInt("roomNumber"));
+	    			listdata.add(rs.getInt("roomno"));
 	    		}
 	    		
 	    		checkin_roomno.setItems(listdata);
@@ -165,7 +166,7 @@ public class CheckinController implements Initializable{
 	    									+ "'"+checkout_date.getValue()+"')";
 	    	
 	    	
-	    String sql2="update room set status='Unavailable' where roomNumber='"+roomno+"'";
+	    String sql2="update room set roomstatus='Unavailable' where roomno='"+roomno+"'";
 	    	
 	    	
 	    	
@@ -187,6 +188,9 @@ public class CheckinController implements Initializable{
 	    		
 	    		c.s.executeUpdate(sql2);
 	    		
+	    		
+	    		
+	    		reset();
 
 	    		
 	    		Alert alert2 = new Alert(AlertType.INFORMATION);
@@ -237,7 +241,7 @@ public class CheckinController implements Initializable{
 	    double totalprice;
 	    public void totalprice() {
 	    	totalDays();
-	    	String sql="select * from room where roomNumber='"+String.valueOf(checkin_roomno.getValue())+"'";
+	    	String sql="select * from room where roomno='"+String.valueOf(checkin_roomno.getValue())+"'";
 	    	
 	    	try {
 	    		Conn conn = new Conn();
@@ -258,6 +262,30 @@ public class CheckinController implements Initializable{
 	    	
 	    }
 	    
+	    
+	    
+	    public void reset() {
+	    	String sql= "insert into customer (customer_id,fname,lname,phone,email,roomtype,roomno,"
+	    			+ "checkin,checkout)values('"+ Integer.parseInt(customer_num.getText())+"','"+firstname_txtfield
+	    			.getText()+"','"+lastname_textfield.getText()+"','"+phone_txtfield.getText()+"',"
+	    					+ "'"+email_txtfield.getText()+"','"+(String)checkin_roomtype.getSelectionModel().getSelectedItem()+"',"
+	    							+ "'"+roomno+"','"+checkin_date.getValue()+"',"
+	    									+ "'"+checkout_date.getValue()+"')";
+	    	
+	    	customer_num.setText("");
+	    	firstname_txtfield.setText("");
+	    	lastname_textfield.setText("");
+	    	phone_txtfield.setText("");
+	    	email_txtfield.setText("");
+	    	checkin_roomtype.getSelectionModel().clearSelection();
+	    	checkin_roomno.getSelectionModel().clearSelection();
+//	    	checkin_date.setValue(null);
+//	    	checkout_date.setValue(null);
+	    	checkin_totaldays.setText("");
+	    	checkin_total.setText("$0.0");
+	    	
+	    	
+	    }
 	    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

@@ -1,6 +1,7 @@
 package application;
 
 import java.io.IOException;
+
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -184,7 +185,7 @@ public class DashboardController implements Initializable{
     		Conn conn= new Conn();
     		//first check if the room already exist or not
     		
-    		String sql = "Select * from room where roomNumber='"+availablerooms_roomno.getText()+"'";
+    		String sql = "Select * from room where roomno='"+availablerooms_roomno.getText()+"'";
     		
     		ResultSet rs = null;
     		try {
@@ -206,7 +207,7 @@ public class DashboardController implements Initializable{
     		
     		
     		
-    		String sql2="insert into room(roomNumber,roomtype,status,price)values('"+availablerooms_roomno.
+    		String sql2="insert into room(roomno,roomtype,roomstatus,price)values('"+availablerooms_roomno.
     				getText()+"','"+(String)availablerooms_roomtype.getSelectionModel().getSelectedItem()+"','"+(String)availablerooms_roomstatus
     				.getSelectionModel().getSelectedItem()+"','"+availablerooms_price.getText()+"')";
     				
@@ -260,7 +261,7 @@ public class DashboardController implements Initializable{
             Data data;
             
             while(result.next()){
-                data = new Data(result.getInt("roomNumber"),result.getString("roomtype"),result.getString("status"),result.getDouble("price"));
+                data = new Data(result.getInt("roomno"),result.getString("roomtype"),result.getString("roomstatus"),result.getDouble("price"));
                 
                 listdata.add(data);
             }
